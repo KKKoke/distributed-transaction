@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @desc
  */
 @Configuration
-public class GlobalTransactionAutoConfiguration implements WebMvcConfigurer {
+public class GlobalTransactionInterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

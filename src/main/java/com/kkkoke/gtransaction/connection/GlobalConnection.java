@@ -1,7 +1,7 @@
 package com.kkkoke.gtransaction.connection;
 
 import com.kkkoke.gtransaction.transactional.BatchTransaction;
-import com.kkkoke.gtransaction.transactional.TransactionStatus;
+import com.kkkoke.gtransaction.constant.TransactionStatus;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;

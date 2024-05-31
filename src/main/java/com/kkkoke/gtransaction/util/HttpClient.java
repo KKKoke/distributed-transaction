@@ -1,5 +1,6 @@
 package com.kkkoke.gtransaction.util;
 
+import com.kkkoke.gtransaction.constant.TransactionProperty;
 import com.kkkoke.gtransaction.transactional.GlobalTransactionManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
@@ -8,8 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
-import java.util.Objects;
 
 /**
  * @author KeyCheung
@@ -26,8 +25,8 @@ public class HttpClient {
 
             HttpGet httpGet = new HttpGet(url);
             httpGet.addHeader("Content-type", "application/json");
-            httpGet.addHeader("groupId", GlobalTransactionManager.getCurrentGroupId());
-            httpGet.addHeader("transactionCount", String.valueOf(GlobalTransactionManager.getTransactionCount()));
+            httpGet.addHeader(TransactionProperty.GROUP_ID, GlobalTransactionManager.getCurrentGroupId());
+            httpGet.addHeader(TransactionProperty.TRANSACTION_COUNT, String.valueOf(GlobalTransactionManager.getTransactionCount()));
             CloseableHttpResponse response = httpClient.execute(httpGet);
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {

@@ -1,5 +1,7 @@
 package com.kkkoke.gtransaction.transactional;
 
+import com.kkkoke.gtransaction.constant.TransactionStatus;
+
 /**
  * @author KeyCheung
  * @date 2023/10/27

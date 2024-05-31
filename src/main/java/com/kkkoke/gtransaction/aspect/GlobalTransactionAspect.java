@@ -3,13 +3,14 @@ package com.kkkoke.gtransaction.aspect;
 import com.kkkoke.gtransaction.annotation.GlobalTransactional;
 import com.kkkoke.gtransaction.transactional.BatchTransaction;
 import com.kkkoke.gtransaction.transactional.GlobalTransactionManager;
-import com.kkkoke.gtransaction.transactional.TransactionStatus;
+import com.kkkoke.gtransaction.constant.TransactionStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -20,6 +21,7 @@ import java.lang.reflect.Method;
  */
 @Slf4j
 @Aspect
+@Component
 public class GlobalTransactionAspect implements Ordered {
 
     @Around("@annotation(com.kkkoke.gtransaction.annotation.GlobalTransactional)")

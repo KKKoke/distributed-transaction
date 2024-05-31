@@ -5,6 +5,7 @@ import com.kkkoke.gtransaction.transactional.GlobalTransactionManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 
@@ -14,6 +15,7 @@ import java.sql.Connection;
  * @desc
  */
 @Aspect
+@Component
 public class GlobalTransactionDataSourceAspect {
 
     /**

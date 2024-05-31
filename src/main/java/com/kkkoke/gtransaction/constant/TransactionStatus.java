@@ -1,4 +1,4 @@
-package com.kkkoke.gtransaction.transactional;
+package com.kkkoke.gtransaction.constant;
 
 /**
  * @author KeyCheung
