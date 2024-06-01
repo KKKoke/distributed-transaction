@@ -29,6 +29,7 @@ public class GlobalConnection implements Connection {
     @Override
     public void commit() throws SQLException {
         // 要提交的时候先不提交，等TxManager的通知再提交
+        log.info("create a thread to block commit");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -36,8 +37,10 @@ public class GlobalConnection implements Connection {
                     synchronized (batchTransaction.getLock()) {
                         batchTransaction.getLock().wait();
                         if (batchTransaction.getTransactionStatus().equals(TransactionStatus.rollback)) {
+                            log.info("do rollback1");
                             connection.rollback();
                         } else {
+                            log.info("do commit1");
                             connection.commit();
                         }
                         connection.close();
@@ -57,6 +60,7 @@ public class GlobalConnection implements Connection {
                 try {
                     synchronized (batchTransaction.getLock()) {
                         batchTransaction.getLock().wait();
+                        log.info("do rollback2");
                         connection.rollback();
                         connection.close();
                     }

@@ -41,6 +41,7 @@ public class GlobalTransactionAspect implements Ordered {
         }
 
         // 创建一个分支事务
+        log.info("create a batch transaction");
         BatchTransaction batchTransaction = GlobalTransactionManager.createBatchTransaction(groupId);
 
         try {
@@ -48,9 +49,11 @@ public class GlobalTransactionAspect implements Ordered {
             point.proceed();
 
             // 注册分支事务
+            log.info("register a batch transaction-commit");
             GlobalTransactionManager.registerBatchTransaction(batchTransaction, annotation.isEnd(), TransactionStatus.commit);
         } catch (Throwable e) {
             // 注册分支事务
+            log.info("register a batch transaction-rollback");
             GlobalTransactionManager.registerBatchTransaction(batchTransaction, annotation.isEnd(), TransactionStatus.rollback);
             log.error(e.getLocalizedMessage());
         }

@@ -40,8 +40,10 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
         BatchTransaction batchTransaction = GlobalTransactionManager.getBatchTransaction(groupId);
         if (Objects.equals(command, CommandType.ROLLBACK)) {
+            log.info("set rollback");
             batchTransaction.setTransactionStatus(TransactionStatus.rollback);
         } else if (Objects.equals(command, CommandType.COMMIT)) {
+            log.info("set commit");
             batchTransaction.setTransactionStatus(TransactionStatus.commit);
         }
         synchronized (batchTransaction.getLock()) {
